@@ -19,3 +19,17 @@ console.log(numSet);
     // Menghapus data
 numSet.delete(8); // 8 adalah nilai, BUKAN index.
 console.log(numSet);
+
+    // Mengembalikan seluruh nilai/value bentuk SetIterator
+console.log(numSet.values());
+
+    // Memeriksa ketersediaan nilai
+console.log(numSet.has(10));
+
+    // Mengetahui jumlah elemen
+console.log(numSet.size);
+
+    // Perulangan pada Set
+for (let i of numSet) {
+    console.log(i);
+}

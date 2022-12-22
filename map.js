@@ -45,3 +45,14 @@ if (myMap.has("nama")) {
     // Menghapus key-value didalam map
 console.log(myMap.delete("umur"));
 console.log(myMap);
+
+// Menampilkan semua key secara iterator
+console.log(myMap.keys());
+
+// Menampilkan semua value secara iterator
+console.log(myMap.values());
+
+// Perulangan pada Map
+for (let i of myMap) {
+    console.log(i);
+}
