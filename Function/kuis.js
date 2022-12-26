@@ -49,3 +49,9 @@ Beberapa hal yang telah kita bahas pada modul ini, antara lain:
     Fungsi dapat mengembalikan nilai. Jika tidak, maka hasilnya adalah undefined.
     Karena fungsi berupa nilai, fungsi dapat ditetapkan atau dideklarasikan di setiap tempat kode, termasuk variabel atau parameter dari fungsi lain.
  */
+
+function calculate(value) {
+    return value < 2 ? value : (calculate(value - 1) + calculate(value - 2));
+}
+
+console.log(calculate(3));
