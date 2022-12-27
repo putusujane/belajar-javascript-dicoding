@@ -99,3 +99,29 @@ console.log("Hello, World!");
 // mobil1._chassisNumber = "123";
 // console.log(mobil1);
 // console.log(mobil1._generateChassisNumber());
+
+// Getter dan Setter
+class NewCar  {
+    constructor(brand, color, maxSpeed, chassisNumber) {
+        this.brand = brand;
+        this.color = color;
+        this.maxSpeed = maxSpeed;
+        this.#chassisNumber = chassisNumber;
+    }
+
+    // Getter
+    get chassisNumber() {
+        return this.#chassisNumber;
+    }
+
+    // Setter
+    set chassisNumber(chassisNumber) {
+        console.log(`Anda tidak bisa mengubah ini!.`);
+    }
+}
+
+const newMobil = new NewCar("BMW","Black",400, "B-11");
+console.log(newMobil);
+
+newMobil._chassisNumber = "123";
+console.log(newMobil);
