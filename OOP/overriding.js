@@ -98,4 +98,4 @@ mobil.drive("cepat");
 
 const motor = new Motor("Honda","Matic");
 console.log(motor);
-motor.drive("lambat");
+motor.drive();
