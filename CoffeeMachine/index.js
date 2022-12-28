@@ -53,7 +53,14 @@ const displayStock = stock => {
     // Mengimpor banyak nilai yang diekspor, menggunakan destructuring object.
     // nama variabel didalam obj literal harus sama agar tidak error.
     // Jika penamaan variabel ingin bebas, gunakan keyword as setelah nama variabel
-import {coffeeStock as stockX, isCoffeeMachineReady as isCMR} from "./state.js";
+// import {coffeeStock as stockX, isCoffeeMachineReady as isCMR} from "./state.js";
 
-console.log(stockX);
-console.log(isCMR);
+// console.log(stockX);
+// console.log(isCMR);
+
+const Car = require("./practice");
+
+const newCar = new Car("Tesla", "Gray", "TL-1");
+console.log(newCar);
+
+newCar.chassisNumber = "Hacked";
