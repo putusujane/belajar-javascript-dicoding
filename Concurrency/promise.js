@@ -36,7 +36,7 @@ const executorFunction = (resolve, reject) => {
 }
 
     // Constuctor Promise untuk mengembalikan objek Promise dengan parameter executorFunction diatas
-const makeCoffee = () => {
+let makeCoffee = () => {
     return new Promise(executorFunction);
 }
 
@@ -78,7 +78,7 @@ checkStock().then(handleSuccess, handleFailure);
 //==============================================================
 console.log("============================================");
 
-// onRejected With catch Method
+// onRejected With catch Method ================================
     // Menerapkan prinsip separation of concerns (Pemisahan masalah)
     // Agar kode lebih rapi dan mudah untuk mencari error.
 
@@ -112,3 +112,78 @@ const handleFailure1 = rejectedReason => {
 checkStock2()
     .then(handleSuccess1)
     .catch(handleFailure1)
+
+console.log("=================================");
+
+
+// CHAINING PROMISE ====================================================
+    // Object state untuk menyimpan stok dan ketersediaan mesin
+const state = {
+    stock: {
+        coffeeBeans: 250,
+        water: 1000,
+    },
+    isCoffeeMachineBusy: false,
+};
+
+    // Function memeriksa ketersediaan mesin, didalamnya ada function setTimeOut()
+const checkAvailability = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (!state.isCoffeeMachineBusy) {
+                resolve("Mesin kopi siap digunakan!");
+            } else {
+                reject("Maaf, mesin sedang sibuk.");
+            }
+        }, 2000);
+    })
+}
+
+    // Function Memastikan stok biji kopi dan air cukup untuk membuat kopi
+const checkStockCW = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (state.stock.coffeeBeans >= 16 && state.stock.water >= 250) {
+                resolve("Stok cukup. Bisa membuat kopi!");
+            } else {
+                reject("Stok tidak cukup!");
+            }
+        }, 2500);
+    })
+}
+
+    // Fungsi Promise untuk mencampur kopi dan air, lalu menghidangkan ke gelas.
+const brewCoffee = () => {
+    console.log("Sedang membuat kopi anda...");
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("Kopi sudah siap!");
+        }, 3000);
+    })
+}
+
+    // Function Memanggil semua diatas dengan Chaining Promise
+const makeEspresso = () => {
+    checkAvailability()
+        .then((value) => {
+            console.log(value);
+            return checkStockCW();
+        })
+
+        .then((value) => {
+            console.log(value);
+            return brewCoffee();
+        })
+
+        .then((value) => {
+            console.log(value);
+            return state.isCoffeeMachineBusy = false;
+        })
+
+        .catch((rejectedReason) => {
+            console.log(rejectedReason);
+            return state.isCoffeeMachineBusy = false;
+        });
+}
+
+makeEspresso();
